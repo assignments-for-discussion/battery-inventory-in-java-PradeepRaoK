@@ -9,6 +9,23 @@ public class Main {
 
   static CountsBySoH countBatteriesByHealth(int[] presentCapacities) {
     CountsBySoH counts = new CountsBySoH();
+    int[] SoHs = new int[presentCapacities.length];
+//    calculation of individual SoH% for batteries
+    for(int i=0;i<presentCapacities.length;i++){
+      SoHs[i] = 100 * presentCapacities[i] / 120;
+//      System.out.println(SoHs[i]);
+    }
+//    classification of batteries
+    for (int soH : SoHs) {
+        if (soH > 80 && soH <= 100) {
+            counts.healthy++;
+        } else if (soH >= 62 && soH <= 80) {
+            counts.exchange++;
+        } else {
+            counts.failed++;
+        }
+    }
+//    System.out.println(counts.healthy+" "+counts.exchange+" "+counts.failed);
     return counts;
   }
 
