@@ -9,19 +9,19 @@ public class Main {
 
   static CountsBySoH countBatteriesByHealth(int[] presentCapacities) {
     CountsBySoH counts = new CountsBySoH();
-    int[] SoHs = new int[presentCapacities.length];
+    int[] SoHs = new int[presentCapacities.length];//integer array to store SoHs of each battery
 //    calculation of individual SoH% for batteries
     for(int i=0;i<presentCapacities.length;i++){
-      SoHs[i] = 100 * presentCapacities[i] / 120;
+      SoHs[i] = 100 * presentCapacities[i] / 120;//formula to calculate the SoHs of battery
 //      System.out.println(SoHs[i]);
     }
 //    classification of batteries
     for (int soH : SoHs) {
-        if (soH > 80 && soH <= 100) {
+        if (soH > 80 && soH <= 100) {//healthy battery SoH condition
             counts.healthy++;
-        } else if (soH >= 62 && soH <= 80) {
+        } else if (soH >= 62 && soH <= 80) {//exchange battery SoH condition
             counts.exchange++;
-        } else {
+        } else {//failed case
             counts.failed++;
         }
     }
